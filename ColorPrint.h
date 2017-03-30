@@ -53,13 +53,13 @@
 	#define PRINT(level,content) do{\
 		switch (level) {\
 			/* For Success */\
-			case 'S': std::cout << CC_GREEN << "[SUCCESS " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
+			case 'S': std::cout << CC_GREEN << "[SUCCESS " << __FUNCTION__ << ":" << __LINE__ << "]" << content << CC_RESET << std::endl; CC_RESET; break;\
 			/* For Notice */\
-			case 'N': std::cout << CC_CYAN << "[NOTICE " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
+			case 'N': std::cout << CC_CYAN << "[NOTICE " << __FUNCTION__ << ":" << __LINE__ << "]" << content << CC_RESET << std::endl; CC_RESET; break;\
 			/* For Warn */\
-			case 'W': std::cout << CC_YELLOW << "[WARNNING " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
+			case 'W': std::cout << CC_YELLOW << "[WARNNING " << __FUNCTION__ << ":" << __LINE__ << "]" << content << CC_RESET << std::endl; CC_RESET; break;\
 			/* For Error */\
-			case 'E': std::cout << CC_RED << "[ERROR " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
+			case 'E': std::cout << CC_RED << "[ERROR " << __FUNCTION__ << ":" << __LINE__ << "]" << content << CC_RESET << std::endl; CC_RESET; break;\
 			/* For Normal Info */\
 			case 'I': std::cout << "[INFO " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; break;\
 			default : break;\
@@ -69,7 +69,7 @@
 	#define PRINT(level,content) do{\
 		switch (level) {\
 			/* For Error */\
-			case 'E': std::cout << CC_RED << "[ERROR " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
+			case 'E': std::cout << CC_RED << "[ERROR " << __FUNCTION__ << ":" << __LINE__ << "]" << content << CC_RESET << std::endl; CC_RESET; break;\
 			default : break;\
 		}\
 	}while(0)
