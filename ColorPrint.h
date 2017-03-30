@@ -21,14 +21,6 @@
 		C_BLACK = 0,
 	};
 
-	char setConsoleColor(ConsoleColor textColor = C_WHITE, ConsoleColor backgroundColor = C_BLACK)
-	{
-		//STD_ERROR_HANDLE;
-		HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleTextAttribute(handle, textColor | backgroundColor);
-		return '\r';
-	}
-
 	#define CC_RED setConsoleColor(C_RED)
 	#define CC_GREEN setConsoleColor(C_GREEN)
 	#define CC_BLUE setConsoleColor(C_BLUE)
@@ -37,6 +29,15 @@
 	#define CC_BLACK setConsoleColor(C_BLACK)
 	#define CC_WHITE setConsoleColor(C_WHITE)
 	#define CC_RESET setConsoleColor()
+
+	char setConsoleColor(ConsoleColor textColor = C_WHITE, ConsoleColor backgroundColor = C_BLACK)
+	{
+		//STD_ERROR_HANDLE;
+		HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(handle, textColor | backgroundColor);
+		return '\r';
+	}
+	
 #else
 	#define CC_RED "\033[31m"
 	#define CC_GREEN "\033[32m"
@@ -50,20 +51,20 @@
 
 #ifndef NoMessage 
 	#define PRINT(level,content) do{\
-			switch (level) {\
-				/* For Success */\
-				case 'S': std::cout << CC_GREEN << "[SUCCESS " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
-				/* For Notice */\
-				case 'N': std::cout << CC_CYAN << "[NOTICE " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
-				/* For Warn */\
-				case 'W': std::cout << CC_YELLOW << "[WARNNING " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
-				/* For Error */\
-				case 'E': std::cout << CC_RED << "[ERROR " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
-				/* For Normal Info */\
-				case 'I': std::cout << "[INFO " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; break;\
-				default : break;\
-			}\
-		}while(0)
+		switch (level) {\
+			/* For Success */\
+			case 'S': std::cout << CC_GREEN << "[SUCCESS " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
+			/* For Notice */\
+			case 'N': std::cout << CC_CYAN << "[NOTICE " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
+			/* For Warn */\
+			case 'W': std::cout << CC_YELLOW << "[WARNNING " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
+			/* For Error */\
+			case 'E': std::cout << CC_RED << "[ERROR " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; CC_RESET; break;\
+			/* For Normal Info */\
+			case 'I': std::cout << "[INFO " << __FUNCTION__ << ":" << __LINE__ << "]" << content << std::endl; break;\
+			default : break;\
+		}\
+	}while(0)
 #else
 	#define PRINT(level,content) do{\
 		switch (level) {\
