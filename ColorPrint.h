@@ -30,7 +30,7 @@
 	#define CC_WHITE setConsoleColor(C_WHITE)
 	#define CC_RESET setConsoleColor()
 
-	char setConsoleColor(ConsoleColor textColor = C_WHITE, ConsoleColor backgroundColor = C_BLACK)
+	inline char setConsoleColor(ConsoleColor textColor = C_WHITE, ConsoleColor backgroundColor = C_BLACK)
 	{
 		//STD_ERROR_HANDLE;
 		HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
