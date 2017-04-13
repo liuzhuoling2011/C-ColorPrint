@@ -23,14 +23,6 @@
 
 	static HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	inline char setConsoleColor(ConsoleColor textColor = C_WHITE, ConsoleColor backgroundColor = C_BLACK)
-	{
-		//STD_ERROR_HANDLE;
-		HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleTextAttribute(handle, textColor | backgroundColor);
-		return '\r';
-	}
-
 	#define CC_RED SetConsoleTextAttribute(handle,C_RED|C_BLACK)
 	#define CC_GREEN SetConsoleTextAttribute(handle,C_GREEN|C_BLACK)
 	#define CC_BLUE SetConsoleTextAttribute(handle,C_BLUE|C_BLACK)
