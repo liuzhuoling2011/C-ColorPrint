@@ -1,6 +1,7 @@
 # C-ColorPrint
 It is very small but useful, easy to use c++ to create colorful code
 
+```c++
 #include "ColorPrint.h"
 int main() {
 	PRINT('I', "lalala, I am white" << 1 << "!");
@@ -17,3 +18,4 @@ int main() {
 	PRINTF('E', "lalala, I am red%d!", 5);
 	PRINTF('I', "lalala, I am white again%d!", 6);
 }
+```
