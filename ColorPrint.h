@@ -7,6 +7,7 @@
 
 #pragma once
 #include <iostream>
+#include <stdio.h>
 
 #ifdef _WIN32
 	#include <windows.h>
@@ -48,11 +49,33 @@
 				default : break;\
 			}\
 		}while(0)
+		#define PRINTF(level,format,...) do{\
+			switch (level) {\
+				/* For Success */\
+				case 'S': CC_GREEN; printf("[SUCCESS %s:%d] " format "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); CC_RESET; break; \
+				/* For Notice */\
+				case 'N': CC_CYAN;  printf("[NOTICE %s:%d] " format "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); CC_RESET; break; \
+				/* For Warn */\
+				case 'W': CC_YELLOW; printf("[WARNNING %s:%d] " format "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); CC_RESET; break; \
+				/* For Error */\
+				case 'E': CC_RED; printf("[ERROR %s:%d] " format "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); CC_RESET; break; \
+				/* For Normal Info */\
+				case 'I': printf("[INFO %s:%d] " format "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); CC_RESET; break; \
+				default: break; \
+			}\
+		}while (0)
 	#else
-	#define PRINT(level,content) do{\
+		#define PRINT(level,content) do{\
 			switch (level) {\
 				/* For Error */\
 				case 'E': CC_RED; std::cout << "[ERROR " << __FUNCTION__ << ":" << __LINE__ << "] " << content << std::endl; CC_RESET; break;\
+				default : break;\
+			}\
+		}while(0)
+		#define PRINTF(level,format,...) do{\
+			switch (level) {\
+				/* For Error */\
+				case 'E': CC_RED; printf("[ERROR %s:%d] " format "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); CC_RESET; break; \
 				default : break;\
 			}\
 		}while(0)
@@ -84,6 +107,21 @@
 				default : break;\
 			}\
 		}while(0)
+		#define PRINTF(level,format,...) do{\
+			switch (level) {\
+				/* For Success */\
+				case 'S': printf(CC_GREEN "[SUCCESS %s:%d] " format CC_RESET "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); break; \
+				/* For Notice */\
+				case 'N': printf(CC_CYAN "[NOTICE %s:%d] " format CC_RESET "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); break; \
+				/* For Warn */\
+				case 'W': printf(CC_YELLOW "[WARNNING %s:%d] " format CC_RESET "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); break; \
+				/* For Error */\
+				case 'E': printf(CC_RED "[ERROR %s:%d] " format CC_RESET "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); break; \
+				/* For Normal Info */\
+				case 'I': printf("[INFO %s:%d] " format CC_RESET "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); break; \
+				default: break; \
+			}\
+		}while (0)
 	#else
 		#define PRINT(level,content) do{\
 			switch (level) {\
@@ -92,8 +130,12 @@
 				default : break;\
 			}\
 		}while(0)
+		#define PRINTF(level,format,...) do{\
+			switch (level) {\
+				/* For Error */\
+				case 'E': printf(CC_RED "[ERROR %s:%d] " format CC_RESET "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__); break; \
+				default: break; \
+			}\
+		}while (0)
 	#endif
 #endif // _WIN32
-
-
-
